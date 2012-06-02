@@ -24,7 +24,9 @@ Handlebars.registerHelper('nav_link', function (url, options) {
 
 //Markdown handles escapes so shouldn't be an issue
 Handlebars.registerHelper('better_markdown_escape', function(string, fn) {
-  return better_markdown(string);
+  //return Meteor.ui.chunk(function (){
+    return better_markdown(string);
+  //});
 });
 
 Handlebars.registerHelper('post_links', function() {

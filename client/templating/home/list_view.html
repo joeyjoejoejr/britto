@@ -1,6 +1,7 @@
 <template name="listView">
   <section class="listView">
     <section class="posts">
+      {{#if user}}<button class="btn btn-primary new-post" >New post</button>{{/if}}
       {{#if count}}
         {{#each postlist}}
           {{>postShort}}

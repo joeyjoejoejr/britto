@@ -1,13 +1,15 @@
 <template name="post">
   <article class="post" id="{{_id}}">
-    <h2><a href="/blog/{{slug}}" >{{ title }}</a></h2>
-    {{#better_markdown_escape body}}{{/better_markdown_escape}}
+    <h2>{{#ipTextField title}}{{/ipTextField}}</h2>
+    {{#ipTextArea body}}{{/ipTextArea}}
+    {{#if user}}
+      <div id="slug-edit">Slug: {{#ipTextField slug}}{{/ipTextField}}</div>
+    {{/if}}
     <dl>
       <dt>Posted by</dt><dd>{{postUser userId}}</dd>
       <dt>Created</dt><dd><time>{{date created}}</time></dd>
     </dl>
     {{#if user}}<button class="btn btn-primary delete-post" data-id="{{_id}}" >Delete post</button>{{/if}}
-    {{#if user}}<button class="btn btn-primary edit-post" data-slug="{{slug}}" >Edit post</button>{{/if}}
   </article>
   {{attach_event slug}}
 </template>

@@ -1,8 +1,8 @@
 <template name="postView">
   <section class="postView">
-    {{#with post}}
+    {{#ipFormFor post model="Posts"}}
       {{>post}}
-    {{/with}}
+    {{/ipFormFor}}
 
     {{#if disqus}}
       <div id="disqus_thread"></div>

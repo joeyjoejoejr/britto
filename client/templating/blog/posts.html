@@ -1,4 +1,5 @@
 <template name="posts">
+   {{#if user}}<button class="btn btn-primary new-post" >New post</button>{{/if}}
   <section class="posts">
     {{#each postlist}}
       {{>postShort}}

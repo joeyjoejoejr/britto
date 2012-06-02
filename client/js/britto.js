@@ -132,7 +132,7 @@ Britto.load.disqusCount = function() {
 //create post callback
 function madePost(error, response) {
   if(!error) {
-    Stellar.redirect('/');
+    Stellar.redirect("blog/"+response);
   } else {
     return standardHandler(error, response);
   }
@@ -189,6 +189,10 @@ Template.search.events = {
   }
 };
 
+Template.listView.events = {
+  'click .new-post': makePost
+}
+
 Template.postView.events = {
   'click #comment-button, submit #comment-button': makeComment
 };
@@ -220,7 +224,10 @@ Template.comment.events = {
 
 Template.post.events = {
   'click .delete-post, submit .delete-post': deletePost,
-  'click .edit-post, submit .edit-post': editPost
+};
+
+Template.ipTextFieldEdit.events = {
+  'blur #edit-slug': slugChanged
 };
 
 Template.users.events = {
@@ -247,7 +254,11 @@ function changeSetting(e) {
 }
 
 function standardHandler(error, response) {
+  console.log("!!!!!!");
+  console.log(response);
   if(!error && response) {
+    console.log("!!!!!!");
+    console.log(response);
     Stellar.redirect('');
   } else {
     if(error && error.error && error.error == 401) {
@@ -336,11 +347,17 @@ function deletePost(e) {
   }
 }
 
-function editPost(e) {
+/*function editPost(e) {
   e.preventDefault();
   target = e.target;
   postId = $(target).attr('data-slug');
   Stellar.redirect('/user_area/edit?id='+postId);
+}*/
+
+function slugChanged(e) {
+  
+  console.log(e);
+  Stellar.redirect("blog/"+$(e.target).val());
 }
 
 function deletedPost(error, response) {
@@ -359,7 +376,7 @@ function changeTitle() {
 function makePost(e) {
   e.preventDefault();
   if(Session.get('user')) {
-    Meteor.call('post', {title: $('#post-title').val(), body: $('#post-body').val(), slug: $('#post-slug').val(), auth: Stellar.session.getKey()}, madePost);
+    Meteor.call('post', {title: "New Post", body: "Enter your post here", slug: Date.now().toString(), auth: Stellar.session.getKey()}, madePost);
   }
   return false;
 }

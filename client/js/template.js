@@ -9,7 +9,7 @@ Template.sidelinks.blogRoll = function() {
 Template.nav.links = function() {
   var links = [{url: '/blog/', text: 'Home'}];
   if(Session.get('user')) {
-    links.push({url: '/user_area', text: 'User area'});
+    //links.push({url: '/user_area', text: 'User area'});
     links.push({url: '/user_area/users', text: 'Users'});
     links.push({url: '/user_area/options', text: 'Options'});
     links.push({url: '/user_area/settings', text: 'Settings'});
@@ -81,7 +81,7 @@ _.each(['postShort', 'post', 'postView'], function(template) {
   }
 });
 
-_.each(['options', 'user_area', 'comment', 'nav', 'post'], function(template) {
+_.each(['options', 'user_area', 'comment', 'nav', 'post','listView'], function(template) {
   Template[template].user = function() {
     return Session.get('user');
   }

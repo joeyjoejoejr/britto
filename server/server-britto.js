@@ -149,7 +149,7 @@ function makePost(args) {
         created: new Date()
       });
     }
-    return true;
+    return args.slug;
   }
   return false;
 }
