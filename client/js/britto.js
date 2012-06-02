@@ -142,7 +142,7 @@ function loginCallback(error, returnVal) {
   if(!error) {
     Stellar.session.updateKey(returnVal.auth);
     Session.set('user', returnVal);
-    Stellar.redirect('user_area');
+    Stellar.redirect('blog');
   } else {
     return standardHandler(error, returnVal);
   }
@@ -201,10 +201,10 @@ Template.login.events = {
   'click #login-button, submit #login-button': doLogin
 };
 
-Template.user_area.events = {
-  'click #post-button, submit #post-button': makePost,
-  'change #post-title': changeTitle
-};
+//Template.user_area.events = {
+//  'click #post-button, submit #post-button': makePost,
+//  'change #post-title': changeTitle
+//};
 
 Template.settings.events = {
   'click #change-setting-button, submit #change-setting-button': changeSetting,
@@ -254,11 +254,7 @@ function changeSetting(e) {
 }
 
 function standardHandler(error, response) {
-  console.log("!!!!!!");
-  console.log(response);
   if(!error && response) {
-    console.log("!!!!!!");
-    console.log(response);
     Stellar.redirect('');
   } else {
     if(error && error.error && error.error == 401) {
@@ -368,10 +364,10 @@ function deletedPost(error, response) {
   }
 }
 
-function changeTitle() {
-  slug = $('#post-title').val();
-  $('#post-slug').val(slug.replace(/\s/g, '_').toLowerCase());
-}
+//function changeTitle() {
+//  slug = $('#post-title').val();
+//  $('#post-slug').val(slug.replace(/\s/g, '_').toLowerCase());
+//}
 
 function makePost(e) {
   e.preventDefault();
