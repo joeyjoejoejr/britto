@@ -15,7 +15,7 @@ Britto.settingsLoaded = function() {
   Stellar.log('settings loaded');
   timeLoad = new Date().getTime();
   Britto.load.analytics();
-  Britto.load.madewith();
+  //Britto.load.madewith();
 }
 
 Meteor.subscribe("allsettings", Britto.settingsLoaded);
